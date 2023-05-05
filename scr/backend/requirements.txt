@@ -1,0 +1,7 @@
+fastapi==0.95.1
+uvicorn==0.22.0
+SQLAlchemy==1.4.41
+asyncpg==0.27.0
+alembic==1.10.4
+orjson==3.8.11
+sqlmodel==0.0.8
