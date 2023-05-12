@@ -31,7 +31,7 @@ class RouterBase(ABC):
             methods=['GET'],
             summary='Get items',
             description='Возвращает коллекцию записей',
-            response_model=list[self.controller.model],
+            # response_model=list[self.controller.model],
         )
         self.router.add_api_route(
             f'/{self.path}/{{item_id}}',

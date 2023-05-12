@@ -21,7 +21,7 @@ class ControllerBase(ABC):
         statement = select(cls.model).offset(offset).limit(limit).order_by(
             cls.model.id)
         result = await session.execute(statement)
-        return result.scalar_one_or_none()
+        return result.scalars().all()
 
     @classmethod
     async def create(cls, partner: dict, session: AsyncSession = None):

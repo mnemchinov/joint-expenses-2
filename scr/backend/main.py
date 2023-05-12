@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from scr.backend.app.api.v1.routers import PartnerRouter, OrderRouter, \
     OrderPartnersRouter
@@ -10,6 +11,16 @@ app = FastAPI(
     version=settings.version,
     description=settings.description,
 )
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 api_v1_prefix = '/api/v1'
 
 app.include_router(PartnerRouter().router, prefix=api_v1_prefix)
