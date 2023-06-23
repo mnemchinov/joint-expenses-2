@@ -32,9 +32,10 @@ Ext.define('JointExpenses.view.main.List', {
         {text: 'Сумма', dataIndex: 'amount', xtype: 'numbercolumn', flex: 1},
     ],
 
-    // listeners: {
-    //     select: 'onItemSelected'
-    // },
+    listeners: {
+        select: 'onSelectChange',
+        scope: 'this'
+    },
 
     bbar: Ext.create('Ext.PagingToolbar', {
         store: {
@@ -42,26 +43,25 @@ Ext.define('JointExpenses.view.main.List', {
         }
     }),
 
-    dockedItems: [{
-        xtype: 'toolbar',
-        items: [{
-            iconCls: 'fa fa-plus-circle',
-            text: 'Добавить',
-            scope: this,
-            // handler: this.onAddClick
-        }, {
-            iconCls: 'fa fa-trash',
-            text: 'Удалить',
-            disabled: true,
-            itemId: 'delete',
-            scope: this,
-            // handler: this.onDeleteClick
-        }]
-    }],
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            items: [{
+                iconCls: 'fa fa-plus-circle',
+                text: 'Добавить',
+                scope: this,
+                // handler: this.onAddClick
+            }, {
+                iconCls: 'fa fa-trash',
+                text: 'Удалить',
+                disabled: true,
+                itemId: 'delete',
+                scope: this,
+                // handler: this.onDeleteClick
+            }]
+        },
+    ],
     onSelectChange: function (selModel, selections) {
         this.down('#delete').setDisabled(selections.length === 0);
     },
-});
-grid.getSelectionModel().on('selectionchange', function (selModel, selections) {
-    grid.down('#delete').setDisabled(selections.length === 0);
 });
